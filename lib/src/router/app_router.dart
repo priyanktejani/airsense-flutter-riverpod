@@ -1,4 +1,5 @@
 import 'package:airsense/src/features/graph/domain/model/graph_node_params.dart';
+import 'package:airsense/src/features/graph/presentation/custome_graph_input/custome_graph_input_screen.dart';
 import 'package:airsense/src/features/graph/presentation/graph/graph_screen.dart';
 import 'package:airsense/src/features/home/presentation/home_screen.dart';
 import 'package:airsense/src/router/not_found_screen.dart';
@@ -14,6 +15,13 @@ final appRouterConfig = GoRouter(
       path: '/',
       name: AppRoute.home.name,
       builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+          path: 'custome',
+          name: AppRoute.customeGraphInput.name,
+          builder: (context, state) => const CustomeGraphInputScreen(),
+        ),
+      ],
     ),
     GoRoute(
       path: '/graph:species',
