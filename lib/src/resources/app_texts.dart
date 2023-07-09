@@ -19,21 +19,24 @@ class AppTexts {
       'Monitor, Analyze, and Act for Cleaner Living Spaces - Your Window to Fresher Air.';
   static const southKensington = 'South kensington';
 
-    // Graph screen
+  // Custom graph screen
+  static const appBarSubtitleCustom =
+      'Harness the Power of Data: Enter The Information for Detailed Air Quality Graphs!';
+  static const startDate = 'Start date';
+  static const endDate = 'End date';
+  static const average = 'Average (Hourly)';
+  static const generate = 'Generate';
+  static const sitecodeOrName = 'Site name or code';
+
+  // Graph screen
   static const graph = 'graph';
   static const notEnoughData = 'Not enough data for analysis.';
   static const appBarSubtitleGraph =
       'Graph presents air quality measurements. Identify patterns and make informed choices for your health.';
-   static const microgramsPerCubicMetre = 'µg\\m3';
+  static const microgramsPerCubicMetre = 'µg\\m3';
 }
 
 /// Text styles
-const textStyleAppBarTitle = TextStyle(
-  fontWeight: FontWeight.bold,
-  fontSize: AppSizes.s34,
-  color: AppColors.lightGrey,
-);
-
 const textStyleAppName = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: AppSizes.s50,
@@ -44,6 +47,32 @@ const textStyleHeadLine = TextStyle(
   fontWeight: FontWeight.normal,
   fontSize: AppSizes.s16,
   color: AppColors.lightGrey,
+);
+
+const textStyleAutoCompleteTitle = TextStyle(
+  fontSize: AppSizes.s20,
+  color: AppColors.lightGrey,
+);
+
+const textStyleAutoCompleteSubTitle = TextStyle(
+  fontSize: AppSizes.s14,
+  color: AppColors.silver,
+);
+
+const textStyleToggleSwitch = TextStyle(
+  fontWeight: FontWeight.w500,
+  fontSize: AppSizes.s18,
+);
+
+const textStyleAppBarTitle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: AppSizes.s34,
+  color: AppColors.lightGrey,
+);
+
+const textStyleForm = TextStyle(
+  fontSize: AppSizes.s20,
+  fontWeight: FontWeight.w300,
 );
 
 const textStyleMicrogramsPerCubicMetre = TextStyle(
