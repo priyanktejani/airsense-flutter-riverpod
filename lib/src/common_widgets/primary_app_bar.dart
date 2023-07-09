@@ -26,6 +26,7 @@ class PrimaryAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
+      centerTitle: true,
       leading: showBackButton
           ? IconButton(
               onPressed: () {
