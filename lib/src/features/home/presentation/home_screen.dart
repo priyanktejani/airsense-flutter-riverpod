@@ -77,7 +77,6 @@ class HomeScreen extends ConsumerWidget {
             gapH16,
             OutlinedIconButton(
               onPressed: () {
-                // TODO Not implemented.
                 context.goNamed(AppRoute.customeGraphInput.name);
               },
               text: '${AppTexts.custome} ${AppTexts.customeEmoji}',
