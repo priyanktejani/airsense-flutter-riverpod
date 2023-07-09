@@ -6,18 +6,28 @@ class AppSizes {
   static const s8 = 8.0;
   static const s6 = 6.0;
   static const s12 = 12.0;
+  static const s14 = 14.0;
   static const s16 = 16.0;
   static const s18 = 16.0;
   static const s20 = 20.0;
   static const s22 = 22.0;
   static const s24 = 24.0;
+  static const s28 = 28.0;
   static const s32 = 32.0;
+  static const s34 = 34.0;
+  static const s38 = 38.0;
   static const s48 = 48.0;
   static const s50 = 50.0;
+  static const s54 = 50.0;
   static const s64 = 64.0;
+  static const s84 = 84.0;
+
+  // responsive sizes
+  static const rs48 = 0.48;
+  static const rs64 = 0.64;
 }
 
-/// Gap widths
+// Gap widths
 const gapW4 = SizedBox(width: AppSizes.s4);
 const gapW8 = SizedBox(width: AppSizes.s8);
 const gapW12 = SizedBox(width: AppSizes.s12);
@@ -28,7 +38,7 @@ const gapW32 = SizedBox(width: AppSizes.s32);
 const gapW48 = SizedBox(width: AppSizes.s48);
 const gapW64 = SizedBox(width: AppSizes.s64);
 
-/// Gap heights
+// Gap heights
 const gapH4 = SizedBox(height: AppSizes.s4);
 const gapH8 = SizedBox(height: AppSizes.s8);
 const gapH12 = SizedBox(height: AppSizes.s12);
