@@ -21,6 +21,12 @@ class AppTexts {
 }
 
 /// Text styles
+const textStyleAppBarTitle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: AppSizes.s34,
+  color: AppColors.lightGrey,
+);
+
 const textStyleAppName = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: AppSizes.s50,

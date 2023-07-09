@@ -1,4 +1,4 @@
-import 'package:airsense/src/common_widgets/elevated_icon_button.dart';
+import 'package:airsense/src/common_widgets/primary_button.dart';
 import 'package:airsense/src/features/graph/domain/model/graph_node_params.dart';
 import 'package:airsense/src/resources/app_colors.dart';
 import 'package:airsense/src/resources/app_sizes.dart';
