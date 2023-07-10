@@ -127,63 +127,71 @@ class _CustomGraphInputContentsState
     startTimeState = ref.watch(startTimeStateProvider);
     endTimeState = ref.watch(endTimeStateProvider);
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-          vertical: AppSizes.s28, horizontal: AppSizes.s28),
-      decoration: BoxDecoration(
-        color: AppColors.lightGrey,
-        borderRadius: BorderRadius.circular(AppSizes.s32),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          ToggleSwitchField(
-            onToggle: (index) {
-              isNO2 = (index == 0);
-            },
-            labels: const [AppTexts.no2, AppTexts.pm25],
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+                vertical: AppSizes.s28, horizontal: AppSizes.s28,),
+            decoration: BoxDecoration(
+              color: AppColors.lightGrey,
+              borderRadius: BorderRadius.circular(AppSizes.s32),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  ToggleSwitchField(
+                    onToggle: (index) {
+                      isNO2 = (index == 0);
+                    },
+                    labels: const [AppTexts.no2, AppTexts.pm25],
+                  ),
+                  gapH16,
+                  AutoCompleteField(
+                    sites: widget.sites,
+                    onOptionSelected: (selection) {
+                      siteCode = selection.siteCode;
+                    },
+                  ),
+                  gapH16,
+                  FlatIconButton(
+                    onPressed: () async {
+                      ref.read(startTimeStateProvider.notifier).state =
+                          await _showDateTimePicker();
+                    },
+                    text: startTimeState?.toString() ?? AppTexts.startDate,
+                    icon: Icons.edit_calendar_outlined,
+                    hasInput: startTimeState != null,
+                  ),
+                  gapH16,
+                  FlatIconButton(
+                    onPressed: () async {
+                      ref.read(endTimeStateProvider.notifier).state =
+                          await _showDateTimePicker();
+                    },
+                    text: endTimeState?.toString() ?? AppTexts.endDate,
+                    icon: Icons.edit_calendar_outlined,
+                    hasInput: endTimeState != null,
+                  ),
+                  gapH16,
+                  TextIconField(
+                    controller: _averageController,
+                    hintText: AppTexts.average,
+                    prefixIcon: Icons.legend_toggle_outlined,
+                  ),
+                  gapH32,
+                  ElevatedIconButton(
+                    onPressed: _generate,
+                    text: AppTexts.generate,
+                    icon: Icons.grain_outlined,
+                  ),
+                ],
+              ),
+            ),
           ),
-          gapH16,
-          AutoCompleteField(
-            sites: widget.sites,
-            onOptionSelected: (selection) {
-              siteCode = selection.siteCode;
-            },
-          ),
-          gapH16,
-          FlatIconButton(
-            onPressed: () async {
-              ref.read(startTimeStateProvider.notifier).state =
-                  await _showDateTimePicker();
-            },
-            text: startTimeState?.toString() ?? AppTexts.startDate,
-            icon: Icons.edit_calendar_outlined,
-            hasInput: startTimeState != null,
-          ),
-          gapH16,
-          FlatIconButton(
-            onPressed: () async {
-              ref.read(endTimeStateProvider.notifier).state =
-                  await _showDateTimePicker();
-            },
-            text: endTimeState?.toString() ?? AppTexts.endDate,
-            icon: Icons.edit_calendar_outlined,
-            hasInput: endTimeState != null,
-          ),
-          gapH16,
-          TextIconField(
-            controller: _averageController,
-            hintText: AppTexts.average,
-            prefixIcon: Icons.legend_toggle_outlined,
-          ),
-          gapH32,
-          ElevatedIconButton(
-            onPressed: _generate,
-            text: AppTexts.generate,
-            icon: Icons.grain_outlined,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
