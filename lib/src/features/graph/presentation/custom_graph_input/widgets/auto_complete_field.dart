@@ -1,5 +1,5 @@
 import 'package:airsense/src/features/graph/domain/model/site.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/widgets/text_icon_field.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/widgets/text_icon_field.dart';
 import 'package:airsense/src/resources/app_colors.dart';
 import 'package:airsense/src/resources/app_sizes.dart';
 import 'package:airsense/src/resources/app_texts.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class AutoCompleteField extends StatelessWidget {
   final List<Site> sites;
   final bool enabled;
-  final Function(Site)? onOptionSelected; 
+  final Function(Site)? onOptionSelected;
 
   const AutoCompleteField({
     Key? key,
@@ -26,7 +26,12 @@ class AutoCompleteField extends StatelessWidget {
           optionsBuilder: buildOptions,
           fieldViewBuilder: buildFieldView,
           optionsViewBuilder: (context, onSelected, options) =>
-              buildOptionsView(context, constraints, onSelected, options,),
+              buildOptionsView(
+            context,
+            constraints,
+            onSelected,
+            options,
+          ),
           onSelected: onOptionSelected,
         );
       },
@@ -103,7 +108,8 @@ class AutoCompleteField extends StatelessWidget {
     );
   }
 
-  Widget buildOptionRow(BuildContext context, Function(Site) onSelected, Site site) {
+  Widget buildOptionRow(
+      BuildContext context, Function(Site) onSelected, Site site) {
     double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () => onSelected(site),
@@ -126,14 +132,12 @@ class AutoCompleteField extends StatelessWidget {
             children: [
               SizedBox(
                 width: width * AppSizes.rs64,
-                child: Text(
-                  site.siteName,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: textStyleAutoCompleteTitle
-                ),
+                child: Text(site.siteName,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: textStyleAutoCompleteTitle),
               ),
-             gapH4,
+              gapH4,
               Text(
                 '#${site.siteCode}',
                 style: textStyleAutoCompleteSubTitle,

@@ -1,13 +1,13 @@
 import 'package:airsense/src/common_widgets/async_value_widget.dart';
 import 'package:airsense/src/common_widgets/primary_button.dart';
 import 'package:airsense/src/features/graph/domain/model/graph_node_params.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/field_validation_mixin.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/products_search_state_provider.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/widgets/auto_complete_field.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/field_validation_mixin.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/time_state_provider.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/widgets/auto_complete_field.dart';
 import 'package:airsense/src/common_widgets/primary_app_bar.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/widgets/flat_icon_button.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/widgets/text_icon_field.dart';
-import 'package:airsense/src/features/graph/presentation/custome_graph_input/widgets/toggle_switch_field.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/widgets/flat_icon_button.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/widgets/text_icon_field.dart';
+import 'package:airsense/src/features/graph/presentation/custom_graph_input/widgets/toggle_switch_field.dart';
 import 'package:airsense/src/resources/app_colors.dart';
 import 'package:airsense/src/resources/app_sizes.dart';
 import 'package:airsense/src/features/graph/data/repository/graph_repository.dart';
@@ -18,8 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomeGraphInputScreen extends ConsumerWidget {
-  const CustomeGraphInputScreen({Key? key}) : super(key: key);
+class CustomGraphInputScreen extends ConsumerWidget {
+  const CustomGraphInputScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +27,7 @@ class CustomeGraphInputScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PrimaryAppBar(
         showBackButton: true,
-        title: '${AppTexts.custome} ${AppTexts.customeEmoji}',
+        title: '${AppTexts.custom} ${AppTexts.customEmoji}',
         subtitle: sitesAsync.hasValue ? AppTexts.appBarSubtitleCustom : '',
       ),
       body: AsyncValueWidget(

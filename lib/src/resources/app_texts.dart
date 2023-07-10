@@ -11,8 +11,8 @@ class AppTexts {
   static const pm25 = 'PM25';
   static const ino2 = 'INO2';
   static const ipm25 = 'IPM25';
-  static const custome = 'Custome';
-  static const customeEmoji = '📝';
+  static const custom = 'Custom';
+  static const customEmoji = '📝';
 
   // Home screen
   static const headLine =
