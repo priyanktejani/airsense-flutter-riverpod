@@ -4,6 +4,7 @@ import 'package:airsense/src/utils/dio_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+// This class represents the remote service for fetching graph-related data from the API.
 class GraphRemoteService {
   final Dio client;
   final String apiKey;
@@ -33,6 +34,7 @@ class GraphRemoteService {
     return await client.get(clarityData.toString());
   }
 
+  // Builds the URI for making API requests.
   Uri _buildUri({
     required String endpoint,
     List<String>? pathSegmentsBuilder,
@@ -48,6 +50,7 @@ class GraphRemoteService {
     );
   }
 
+  // Constructs the path segments for clarity data API request.
   List<String> clarityDataPathSegments(
     String siteCode,
     String species,
@@ -58,6 +61,7 @@ class GraphRemoteService {
       [siteCode, species, startTime, endTime, averaging];
 }
 
+// Provider for creating an instance of GraphRemoteService.
 final graphRemoteServiceProvider = Provider<GraphRemoteService>(
   (ref) {
     return GraphRemoteService(

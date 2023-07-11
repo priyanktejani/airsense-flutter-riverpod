@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Colors to be used in the app
 class AppColors {
   static const primary = Color(0xFF090912);
   static const lightGrey = Color(0xFFF5F5F5);

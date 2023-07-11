@@ -18,12 +18,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+// Screen for graph input.
 class CustomGraphInputScreen extends ConsumerWidget {
   const CustomGraphInputScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Watch the sites provider to get the list of sites asynchronously
     final sitesAsync = ref.watch(sitesProvider);
+    
     return Scaffold(
       appBar: PrimaryAppBar(
         showBackButton: true,
@@ -51,14 +54,15 @@ class CustomGraphInputContents extends ConsumerStatefulWidget {
       _CustomGraphInputContentsState();
 }
 
-class _CustomGraphInputContentsState
-    extends ConsumerState<CustomGraphInputContents> with FieldValidationMixin {
+class _CustomGraphInputContentsState extends ConsumerState<CustomGraphInputContents> with FieldValidationMixin {
   final currentDateTime = DateTime.now();
   final _averageController = TextEditingController();
   bool isNO2 = true;
   DateTime? startTimeState;
   DateTime? endTimeState;
   String? siteCode;
+  
+  // Get the value from the average text field
   String get averaging => _averageController.text;
 
   @override
@@ -68,8 +72,9 @@ class _CustomGraphInputContentsState
   }
 
   Future<void> _generate() async {
-    if (validateFields(
-        context, siteCode, startTimeState, endTimeState, averaging)) {
+    // Validate the input fields
+    if (validateFields(context, siteCode, startTimeState, endTimeState, averaging)) {
+      // Create the graphNodeParams object with the input values
       final graphNodeParams = GraphNodeParams(
         siteCode: siteCode!,
         isNO2: isNO2,
@@ -78,7 +83,10 @@ class _CustomGraphInputContentsState
         averaging: averaging,
       );
 
+      // Determine the species based on the isNO2 flag
       final String species = isNO2 ? AppTexts.no2 : AppTexts.pm25;
+      
+      // Navigate to the graph screen with the specified path parameters and extra data
       context.pushNamed(
         AppRoute.graph.name,
         pathParameters: {'species': species},
@@ -87,6 +95,7 @@ class _CustomGraphInputContentsState
     }
   }
 
+  // Show the date picker and return the selected date
   Future<DateTime?> _showDatePicker() async {
     return showDatePicker(
       context: context,
@@ -96,6 +105,7 @@ class _CustomGraphInputContentsState
     );
   }
 
+  // Show the time picker and return the selected time
   Future<TimeOfDay?> _showTimePicker() async {
     return showTimePicker(
       context: context,
@@ -106,6 +116,7 @@ class _CustomGraphInputContentsState
     );
   }
 
+  // Show the date and time picker and return the selected date and time
   Future<DateTime?> _showDateTimePicker() async {
     final date = await _showDatePicker();
     if (date == null) return null;
@@ -132,7 +143,9 @@ class _CustomGraphInputContentsState
         Expanded(
           child: Container(
             padding: const EdgeInsets.symmetric(
-                vertical: AppSizes.s28, horizontal: AppSizes.s28,),
+              vertical: AppSizes.s28,
+              horizontal: AppSizes.s28,
+            ),
             decoration: BoxDecoration(
               color: AppColors.lightGrey,
               borderRadius: BorderRadius.circular(AppSizes.s32),
@@ -141,6 +154,7 @@ class _CustomGraphInputContentsState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  // Toggle switch field to select NO2 or PM2.5
                   ToggleSwitchField(
                     onToggle: (index) {
                       isNO2 = (index == 0);
@@ -148,6 +162,7 @@ class _CustomGraphInputContentsState
                     labels: const [AppTexts.no2, AppTexts.pm25],
                   ),
                   gapH16,
+                  // Auto complete field to select a site
                   AutoCompleteField(
                     sites: widget.sites,
                     onOptionSelected: (selection) {
@@ -155,6 +170,7 @@ class _CustomGraphInputContentsState
                     },
                   ),
                   gapH16,
+                  // Button for selecting start date and time
                   FlatIconButton(
                     onPressed: () async {
                       ref.read(startTimeStateProvider.notifier).state =
@@ -165,6 +181,7 @@ class _CustomGraphInputContentsState
                     hasInput: startTimeState != null,
                   ),
                   gapH16,
+                  // Flat icon button for selecting end date and time
                   FlatIconButton(
                     onPressed: () async {
                       ref.read(endTimeStateProvider.notifier).state =
@@ -175,12 +192,14 @@ class _CustomGraphInputContentsState
                     hasInput: endTimeState != null,
                   ),
                   gapH16,
+                  // Text icon field for average input
                   TextIconField(
                     controller: _averageController,
                     hintText: AppTexts.average,
                     prefixIcon: Icons.legend_toggle_outlined,
                   ),
                   gapH32,
+                  // Button for generating the graph
                   ElevatedIconButton(
                     onPressed: _generate,
                     text: AppTexts.generate,
@@ -195,3 +214,4 @@ class _CustomGraphInputContentsState
     );
   }
 }
+

@@ -53,7 +53,7 @@ class HomeScreen extends ConsumerWidget {
             ),
             gapH48,
 
-            // Buttons
+            // Buttons to show graphs
             ElevatedIconButton(
               onPressed: () {
                 generate(true);

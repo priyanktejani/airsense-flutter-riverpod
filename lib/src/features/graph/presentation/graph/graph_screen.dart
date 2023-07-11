@@ -14,9 +14,14 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// Screen for displaying the graph.
 class GraphScreen extends ConsumerWidget {
-  const GraphScreen(
-      {super.key, required this.species, required this.graphNodeParams});
+  const GraphScreen({
+    Key? key,
+    required this.species,
+    required this.graphNodeParams,
+  }) : super(key: key);
+
   final GraphNodeParams graphNodeParams;
   final String species;
 
@@ -27,6 +32,7 @@ class GraphScreen extends ConsumerWidget {
     );
     int quarterTurns = 1;
 
+    // Function to rotate the graph when the rotation button is pressed.
     void rotateGraph() {
       if (quarterTurns == 4) {
         quarterTurns = 1;
@@ -63,6 +69,7 @@ class GraphScreen extends ConsumerWidget {
   }
 }
 
+// Widget for displaying the content of the graph.
 class GraphContent extends ConsumerStatefulWidget {
   const GraphContent({
     Key? key,
@@ -104,7 +111,7 @@ class _GraphContentState extends ConsumerState<GraphContent> {
         borderRadius: BorderRadius.circular(32),
       ),
       child: RotatedBox(
-        quarterTurns:  quarterTurns,
+        quarterTurns: quarterTurns,
         child: Row(
           children: [
             const RotatedBox(
@@ -117,15 +124,15 @@ class _GraphContentState extends ConsumerState<GraphContent> {
             gapW12,
             Flexible(
               child: LineChart(
-                  _buildLineChartData(
-                    graphData,
-                    minX,
-                    maxX,
-                    minY,
-                    maxY,
-                    gradientColors,
-                  ),
+                _buildLineChartData(
+                  graphData,
+                  minX,
+                  maxX,
+                  minY,
+                  maxY,
+                  gradientColors,
                 ),
+              ),
             ),
           ],
         ),
@@ -133,6 +140,7 @@ class _GraphContentState extends ConsumerState<GraphContent> {
     );
   }
 
+  // Generates the data points for the graph.
   List<FlSpot> _generateGraphData(List<GraphNode> graphNodes) {
     final graphData = graphNodes.map((node) {
       final dateTime = DateTime.parse(node.dateTime);
@@ -144,27 +152,42 @@ class _GraphContentState extends ConsumerState<GraphContent> {
     return graphData;
   }
 
+  // Calculates the minimum or maximum offset value for the graph.
   int _calculateOffset(List<FlSpot> graphData, bool isMin) {
+    // Initialize the initial value to infinity for minimum calculation or negative infinity for maximum calculation
+    final initialValue = isMin ? double.infinity : -double.infinity;
+
+    // Use the fold() method to iterate over the graph data and find the minimum or maximum value based on the `isMin` flag
     final value = graphData.fold(
-      isMin ? double.infinity : -double.infinity,
+      initialValue,
       (double acc, spot) => isMin
           ? acc = acc < spot.y ? acc : spot.y
           : acc = acc > spot.y ? acc : spot.y,
     );
-    return value == 0
-        ? 0
-        : (!isMin ? (value / 5).ceil() * 5 + 10 : value.round());
+
+    // Check if the value is exactly 0
+    if (value == 0) {
+      return 0;
+    } else {
+      // Calculate the offset by rounding up the value to the nearest multiple of 5 and adding 10 (if it's for the maximum)
+      return (!isMin ? (value / 5).ceil() * 5 + 10 : value.round());
+    }
   }
 
-  LineChartData _buildLineChartData(List<FlSpot> graphData, double minX,
-      double maxX, double minY, double maxY, List<Color> gradientColors) {
+  // Builds the LineChartData for the LineChart widget.
+  LineChartData _buildLineChartData(
+    List<FlSpot> graphData,
+    double minX,
+    double maxX,
+    double minY,
+    double maxY,
+    List<Color> gradientColors,
+  ) {
     return LineChartData(
       lineTouchData: const LineTouchData(enabled: false),
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
-        // horizontalInterval: _calculateIntervalY(minY, maxY),
-        // verticalInterval: _calculateIntervalX(minX, maxX),
         getDrawingHorizontalLine: (value) {
           return const FlLine(
             color: AppColors.lightGrey300,
@@ -234,6 +257,7 @@ class _GraphContentState extends ConsumerState<GraphContent> {
     );
   }
 
+  // Calculates the interval for the X-axis.
   double _calculateIntervalX(double minX, double maxX) {
     final range = maxX - minX;
     const desiredIntervals = 5;
@@ -258,6 +282,7 @@ class _GraphContentState extends ConsumerState<GraphContent> {
     return interval;
   }
 
+  // Builds the widget for the bottom titles of the X-axis.
   Widget _bottomTitleWidgets(double value, TitleMeta meta) {
     if (value % 1 != 0) {
       return Container();
@@ -276,12 +301,11 @@ class _GraphContentState extends ConsumerState<GraphContent> {
     );
   }
 
+  // Builds the widget for the left titles of the Y-axis.
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-   
     return SideTitleWidget(
       space: AppSizes.s6,
       axisSide: meta.axisSide,
-      // fitInside: SideTitleFitInsideData.fromTitleMeta(meta),
       child: Text(
         value.toString(),
         style: textStyleGraphTitle,
@@ -290,9 +314,15 @@ class _GraphContentState extends ConsumerState<GraphContent> {
     );
   }
 
+  // Calculates the interval for the Y-axis.
   double _calculateIntervalY(double minY, double maxY) {
+    // Calculate the range of values on the Y-axis
     final range = maxY - minY;
+
+    // Calculate the interval by dividing the range into 5 equal parts
     final interval = range / 5;
+
+    // Round up the interval to the nearest multiple of 5
     return ((interval / 5).ceil() * 5);
   }
 }

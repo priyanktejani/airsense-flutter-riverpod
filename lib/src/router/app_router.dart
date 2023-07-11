@@ -6,16 +6,20 @@ import 'package:airsense/src/router/not_found_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+// Enumeration of the available app routes.
 enum AppRoute { home, customGraphInput, graph }
 
+// Configuration for the app's router using GoRouter.
 final appRouterConfig = GoRouter(
   debugLogDiagnostics: true,
   routes: [
+    // Route for the home screen
     GoRoute(
       path: '/',
       name: AppRoute.home.name,
       builder: (context, state) => const HomeScreen(),
       routes: [
+        // Nested route for the custom graph input screen
         GoRoute(
           path: 'custom',
           name: AppRoute.customGraphInput.name,
@@ -23,6 +27,7 @@ final appRouterConfig = GoRouter(
         ),
       ],
     ),
+    // Route for the graph screen with dynamic species parameter
     GoRoute(
       path: '/graph:species',
       name: AppRoute.graph.name,
@@ -39,5 +44,6 @@ final appRouterConfig = GoRouter(
       },
     ),
   ],
+  // Builder for the error screen when a route is not found
   errorBuilder: (context, state) => const NotFoundScreen(),
 );

@@ -2,6 +2,7 @@ import 'package:airsense/src/resources/app_colors.dart';
 import 'package:airsense/src/resources/app_sizes.dart';
 import 'package:flutter/material.dart';
 
+// AppText to be used in the app
 class AppTexts {
   static const appName = 'airSense';
   static const appEmoji = '💨';
@@ -36,7 +37,7 @@ class AppTexts {
   static const microgramsPerCubicMetre = 'µg\\m3';
 }
 
-/// Text styles
+// Text styles
 const textStyleAppName = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: AppSizes.s50,

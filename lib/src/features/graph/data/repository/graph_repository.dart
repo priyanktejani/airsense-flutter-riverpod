@@ -9,6 +9,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'graph_repository.g.dart';
 
+// This class implements the GraphRepository interface and provides
+// functionality for fetching sites and graph nodes from a remote service.
 class GraphRepositoryImpl extends GraphRepository {
   final GraphRemoteService remoteService;
   GraphRepositoryImpl({required this.remoteService});
@@ -31,17 +33,20 @@ class GraphRepositoryImpl extends GraphRepository {
 }
 
 @riverpod
+// Provider function for creating an instance of GraphRepository
 GraphRepository graphRepository(GraphRepositoryRef ref) => GraphRepositoryImpl(
       remoteService: ref.watch(graphRemoteServiceProvider),
     );
 
 @riverpod
+// Provider function for fetching a list of sites
 Future<List<Site>> sites(SitesRef ref) {
-  ref.keepAlive();
+  ref.keepAlive(); // Ensure the reference stays alive during recomposition
   return ref.watch(graphRepositoryProvider).fetchSites();
 }
 
 @riverpod
+// Provider function for fetching a list of graph nodes
 Future<List<GraphNode>> graphNodes(
   GraphNodesRef ref, {
   required GraphNodeParams graphNodeParams,
