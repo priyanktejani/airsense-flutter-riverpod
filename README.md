@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img width="150" src="https://github.com/priyanktejani/airsense/blob/main/screenshots/launcher/ic_launcher.png?raw=true">
+  <img width="150" src="https://github.com/priyanktejani/airsense/blob/main/screenshots/launcher/ic_launcher.png">
 </p>
 
 <p align="center"> A graphical air quality monitoring app that allows users to track air pollution levels.</p>
@@ -41,17 +41,6 @@ Congratulations, you're good to go. 😎
 - Landscape view
 
 
-## Packages
-
-- [flutter_riverpod](https://pub.dev/packages/riverpod) and [riverpod_generator](https://pub.dev/packages/riverpod_generator) for data caching (and much more!)
-- [fl_chart](https://pub.dev/packages/fl_chart) for generate graph
-- [freezed](https://pub.dev/packages/freezed) for JSON serialization
-- [dio](https://pub.dev/packages/dio) for networking
-- [go_router](https://pub.dev/packages/go_router) for navigation
-- [envied](https://pub.dev/packages/envied) for handling API keys
-- [flutter_launcher_icons](https://pub.dev/packages/envied) for handling API keys
-
-
 ## App Architecture
 
 The project follows Riverpod app architecture with a feature-first project structure.
@@ -69,3 +58,14 @@ More details here:
   <img width=24%; src="https://github.com/priyanktejani/airsense/blob/main/screenshots/3.png">
 	<img width=24%; src="https://github.com/priyanktejani/airsense/blob/main/screenshots/4.png">
 </p>
+
+
+## Packages
+
+- [flutter_riverpod](https://pub.dev/packages/riverpod) and [riverpod_generator](https://pub.dev/packages/riverpod_generator) for data caching (and much more!)
+- [fl_chart](https://pub.dev/packages/fl_chart) for generate graph
+- [freezed](https://pub.dev/packages/freezed) for JSON serialization
+- [dio](https://pub.dev/packages/dio) for networking
+- [go_router](https://pub.dev/packages/go_router) for navigation
+- [envied](https://pub.dev/packages/envied) for handling API keys
+- [flutter_launcher_icons](https://pub.dev/packages/envied) for handling API keys
