@@ -14,7 +14,7 @@
 
 This project uses the BREATHE LONDON API to get the latest movies data.
 
-Before running the app you need to [sign up on the TMDB website](https://www.themoviedb.org/signup), then obtain an API key on the [settings API page](https://www.themoviedb.org/settings/api).
+Before running the app [sign up on the Breathe London website](https://www.breathelondon.org/developers), to obtain an API key.
 
 Once you have this, create an `.env` file **at the root of the project** and add your key:
 
