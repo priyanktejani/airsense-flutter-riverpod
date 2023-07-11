@@ -1,11 +1,14 @@
 <h1 align="center">Airsense app with Riverpod (BREATHE LONDON API)</h1>
 
 
-<img src="https://github.com/priyanktejani/airsense/blob/main/screenshots/launcher/ic_launcher.png?raw=true" alt="Movies app preview" width=50% height=50%>
+<p align="center">
+  <img width="150" src="https://github.com/priyanktejani/airsense/blob/main/screenshots/launcher/ic_launcher.png?raw=true">
+</p>
 
 <p align="center"> A graphical air quality monitoring app that allows users to track air pollution levels.</p>
 <div align="center">
 
+</div>
 
 ## Getting a BREATHE LONDON API key
 
