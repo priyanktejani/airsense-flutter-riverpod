@@ -1,5 +1,5 @@
 import 'package:airsense/src/common_widgets/async_value_widget.dart';
-import 'package:airsense/src/common_widgets/primary_button.dart';
+import 'package:airsense/src/common_widgets/elevated_icon_button.dart';
 import 'package:airsense/src/features/graph/domain/model/graph_node_params.dart';
 import 'package:airsense/src/features/graph/presentation/custom_graph_input/field_validation_mixin.dart';
 import 'package:airsense/src/features/graph/presentation/custom_graph_input/time_state_provider.dart';
