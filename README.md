@@ -12,7 +12,7 @@
 
 ## Getting a BREATHE LONDON API key
 
-This project uses the BREATHE LONDON API to get the latest movies data.
+This project uses the BREATHE LONDON API to get the air quality data.
 
 Before running the app [sign up on the Breathe London website](https://www.breathelondon.org/developers), to obtain an API key.
 
